@@ -6,3 +6,6 @@ https://www.pygame.org/
 
 ### Link to tutorial by Coding With Russ:
 https://www.youtube.com/watch?v=Vlolidaoiak&list=PLjcN1EyupaQnvpv61iriF8Ax9dKra-MhZ
+
+### Link to tutorial Git-repository:
+https://github.com/russs123/Battle

@@ -16,7 +16,7 @@ class Game:
 
         self.world = World(self.width, self.height)
         self.knight = Fighter('Knight', 30, 10, 3, 0)
-        self.bandits = self.create_bandits()
+        self.bandits = self.create_bandits(2)
 
     def run(self):
 
@@ -60,11 +60,11 @@ class Game:
 
         pg.display.flip()
 
-    def create_bandits(self):
+    def create_bandits(self, amount):
 
         arr = []
         
-        for i in range(3):
+        for i in range(amount):
             arr.append(Fighter("Bandit", 20, 6, 1, i))
 
         return arr

@@ -19,7 +19,6 @@ def main():
     game = Game(screen, clock)
 
     while running:
-        pass
         # Start menu
 
         while playing:
