@@ -77,3 +77,8 @@ class Fighter:
     def get_position(self):
             
         return self.starting_positions[self.char_type][self.count], self.fighter_height[self.char_type]
+
+    def get_current_health(self):
+
+        return self.hp / self.max_hp
+
