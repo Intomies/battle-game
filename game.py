@@ -4,6 +4,7 @@ import sys
 from settings import *
 
 from world import World
+from battle_interface import BattleInterface
 from fighter import Fighter
 
 class Game:
@@ -15,6 +16,7 @@ class Game:
         self.width, self.height = self.screen.get_size()
 
         self.world = World(self.width, self.height)
+        self.battle_interface = BattleInterface()
         self.knight = Fighter('Knight', 30, 10, 3, 0)
         self.bandits = self.create_bandits(2)
 
@@ -53,6 +55,7 @@ class Game:
     def draw(self):
 
         self.world.draw(self.screen)
+        self.battle_interface.draw(self.screen)
         self.knight.draw(self.screen)
         
         for bandit in self.bandits:
