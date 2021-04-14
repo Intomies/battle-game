@@ -1,3 +1,5 @@
+from bandit import Bandit
+from knight import Knight
 import pygame as pg
 import sys
 
@@ -5,7 +7,8 @@ from settings import *
 
 from world import World
 from battle_interface import BattleInterface
-from fighter import Fighter
+from knight import Knight
+from bandit import Bandit
 
 class Game:
 
@@ -17,7 +20,7 @@ class Game:
 
         self.world = World(self.width, self.height)
         self.battle_interface = BattleInterface()
-        self.knight = Fighter('Knight', 30, 10, 3, 0)
+        self.knight = Knight('Knight', 30, 10, 3, 0)
         self.bandits = self.create_bandits(2)
 
     def run(self):
@@ -68,7 +71,7 @@ class Game:
         arr = []
         
         for i in range(amount):
-            arr.append(Fighter("Bandit", 20, 6, 1, i))
+            arr.append(Bandit("Bandit", 20, 6, 1, i))
 
         return arr
             
