@@ -33,4 +33,4 @@ FIGHTER_IMAGE_SCALE = 3
 #     "Idle": "Idle"
 # }
 
-FIGHTER_ACTIONS = ["Attack", "Death", "Hurt", "Idle"]
+FIGHTER_ACTIONS = ["attack", "death", "hurt", "idle"]

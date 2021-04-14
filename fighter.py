@@ -17,9 +17,9 @@ class Fighter:
         self.potions = potions
         self.start_potions = potions
         self.alive = True
-        self.actions = FIGHTER_ACTIONS # 0: Attack, 1: Death, 2: Hurt, 3: Idle
+        self.actions = FIGHTER_ACTIONS # [0: attack, 1: death, 2: hurt, 3: idle]
         
-        self.current_action_index = 3
+        self.current_action = "idle"
         self.current_frame_index = 0
         self.update_time = pg.time.get_ticks()
         self.animation_cooldown = 100
@@ -28,19 +28,19 @@ class Fighter:
         self.fighter_height = FIGHTER_HEIGHT
         self.image_scale = FIGHTER_IMAGE_SCALE
         self.images_list = self.load_images()
-        self.image = self.images_list[self.current_action_index][self.current_frame_index]
+        self.image = self.images_list[self.current_action][self.current_frame_index]
         self.rect = self.get_rect()
         self.rect.center = (self.get_position())
 
     def update(self):
 
-        self.image = self.images_list[self.current_action_index][self.current_frame_index]
+        self.image = self.images_list[self.current_action][self.current_frame_index]
         
         if pg.time.get_ticks() - self.update_time > self.animation_cooldown:
             self.update_time = pg.time.get_ticks()
             self.current_frame_index += 1
 
-        if self.current_frame_index >= len(self.images_list[self.current_action_index]):
+        if self.current_frame_index >= len(self.images_list[self.current_action]):
             self.current_frame_index = 0
 
 
@@ -52,7 +52,7 @@ class Fighter:
     
     def load_images(self):
 
-        all_images = []
+        all_images = {}
 
         for i in range(len(self.actions)):
             
@@ -64,7 +64,7 @@ class Fighter:
                 img = pg.transform.scale(img, (img.get_width() * self.image_scale, img.get_height() * self.image_scale))
                 temp_list.append(img)
             
-            all_images.append(temp_list)
+            all_images[self.actions[int(i)]] = temp_list
 
         return all_images
 
