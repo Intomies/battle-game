@@ -35,6 +35,7 @@ class Game:
     def run(self):
 
         self.playing = True
+        print(self.bandits[0]["bandit"].name)
         
         while self.playing:
             
@@ -61,11 +62,14 @@ class Game:
 
         self.knight.update()
         
-        for bandit in self.bandits:
-            bandit.update()
+        # for bandit in self.bandits:
+        #     bandit.update()
 
         # for healthbar in self.battle_interface.healthbars:
         #     healthbar.draw()
+
+        for i in self.bandits.values():
+            i["bandit"].update()
 
     def draw(self):
 
@@ -74,22 +78,35 @@ class Game:
         self.knight_healthbar.draw(self.knight.hp, self.screen)
         self.knight.draw(self.screen)
         
-        for bandit in self.bandits:
-            bandit.draw(self.screen)
+        # for bandit in self.bandits:
+        #     bandit.draw(self.screen)
+
+        for i in self.bandits.values():
+            i["bandit"].draw(self.screen)
+            i["healthbar"].draw(i["bandit"].hp, self.screen)
 
         pg.display.flip()
 
     def create_bandits(self, amount):
 
         arr = []
+        temp_dict = {}
         
         if amount > MAX_AMOUNT_OF_ENEMIES:
             amount = MAX_AMOUNT_OF_ENEMIES
         if amount < MIN_AMOUNT_OF_ENEMIES:
             amount = MIN_AMOUNT_OF_ENEMIES
         
-        for i in range(amount):
-            arr.append(Bandit("Bandit", 20, 6, 1, i))
+        # for i in range(amount):
+        #     arr.append(Bandit("Bandit", 20, 6, 1, i))
 
-        return arr
+        for i in range(amount):
+            temp_bandit = Bandit("Bandit", 20, 6, 1, i)
+            temp_healthbar = Healthbar(temp_bandit.health_bar_pos_x, temp_bandit.health_bar_pos_y, temp_bandit.hp, temp_bandit.max_hp)
+            temp_dict[i] = {
+                "bandit": temp_bandit,
+                "healthbar": temp_healthbar
+            }
+
+        return temp_dict
             

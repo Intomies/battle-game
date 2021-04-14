@@ -11,3 +11,6 @@ class Bandit(Fighter):
         
         super().__init__(char_type, max_hp, strength, potions, count)
         
+
+    
+

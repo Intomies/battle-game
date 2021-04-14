@@ -1,5 +1,6 @@
 import pygame as pg
 import os
+import random as rand
 
 from settings import *
 
@@ -13,6 +14,7 @@ class Fighter:
         self.strength = strength
         self.count = count
         
+        self.name = self.get_name()
         self.hp = max_hp
         self.potions = potions
         self.start_potions = potions
@@ -31,6 +33,9 @@ class Fighter:
         self.image = self.images_list[self.current_action][self.current_frame_index]
         self.rect = self.get_rect()
         self.rect.center = (self.get_position())
+
+        self.health_bar_pos_x = HEALTH_BAR_POSITIONS_X[self.char_type]
+        self.health_bar_pos_y = HEALTH_BAR_POSITIONS_Y[self.count]
 
     def update(self):
 
@@ -78,7 +83,18 @@ class Fighter:
             
         return self.starting_positions[self.char_type][self.count], self.fighter_height[self.char_type]
 
+    
     def get_current_health(self):
 
         return self.hp / self.max_hp
+
+    
+    def get_name(self):
+
+        cylls = "ara,gorn,gim,li,grish,nak,sna,ga,ug,luk,boro,mir,fara,lego,las,fro,do,bag,gins,sam,gam,gi,meri,a,doc,ran,di,buk,pe,reg,rin,tuk,gan,dalf,el,rond,dene,thor,eo,wyn,ar,wen,ga,lad,ri,el,gil,gol,lum,tho,rin,bom,ba,dil,tom,lut,hi,en,fi,ki,li,bur,theo,den,bil,bo"
+        cylls_arr = cylls.split(",")
+
+        return cylls_arr[rand.randint(0, len(cylls_arr) - 1)].capitalize() + cylls_arr[rand.randint(0, len(cylls_arr)- 1)]
+
+
 
